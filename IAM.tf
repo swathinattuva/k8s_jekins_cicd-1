@@ -132,7 +132,7 @@ EOF
 
 resource "aws_iam_role_policy" "ManagedInstanceCore" {
   name = "ManagedInstanceCore"
-  role = "${aws_iam_role.server_access.id}"
+  role = aws_iam_role.server_access.id
 
   policy = <<EOF
 {
