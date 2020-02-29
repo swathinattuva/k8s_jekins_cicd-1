@@ -13,9 +13,10 @@ sudo su - root -c "chown -R centos:centos /home/centos/.kube"
 # Deploy calico network
 echo "[TASK 3] Deploy calico network"
 sudo su - root -c "yum install wget -y"
-su - centos -c "cd /home/centos && wget https://raw.githubusercontent.com/PrasadTelasula/k8s_calico/master/calico.yaml"
-su - centos -c "kubectl create -f /home/centos/calico.yaml"
+cd /home/centos && wget https://raw.githubusercontent.com/PrasadTelasula/k8s_calico/master/calico.yaml
+kubectl create -f /home/centos/calico.yaml
 
 # Generate Cluster join command
 echo "[TASK 4] Generate and save cluster join command to /joincluster.sh"
 sudo su - root -c kubeadm token create --print-join-command > /joincluster.sh"
+sudo su - root -c "cat /joincluster.sh"

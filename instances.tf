@@ -26,7 +26,21 @@ resource "aws_instance" "K8S-Master" {
         destination = "/home/centos/"
   }
 
+  # bootstrap Master Node.
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /home/centos/bootstrap/bootstrap.sh",
+        "/home/centos/bootstrap/bootstrap.sh"
+      ]
+  }
 
+  # Initialise kubernetes cluster.
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /home/centos/bootstrap/bootstrap-master.sh",
+        "/home/centos/bootstrap/bootstrap-master.sh"
+      ]
+  }
 }
 
 # Provision Docker swarm worker Node with centos 7.
@@ -56,6 +70,14 @@ resource "aws_instance" "K8S-Worker-1" {
         source      = "bootstrap/bootstrap.sh"
         destination = "/home/centos/bootstrap.sh"
   }
+
+  # bootstrap Worker Node.
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /home/centos/bootstrap.sh",
+        "/home/centos/bootstrap.sh"
+      ]
+  }
 }
 
 # Provision Docker swarm worker Node with centos 7.
@@ -83,5 +105,13 @@ resource "aws_instance" "K8S-Worker-2" {
   provisioner "file" {
         source      = "bootstrap/bootstrap.sh"
         destination = "/home/centos/bootstrap.sh"
+  }
+
+  # bootstrap Worker Node.
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /home/centos/bootstrap.sh",
+        "/home/centos/bootstrap.sh"
+      ]
   }
 }
