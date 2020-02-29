@@ -24,12 +24,12 @@ EOF
 
 resource "aws_iam_instance_profile" "server_access_profile" {
   name = "server_access_profile"
-  role = "${aws_iam_role.server_access.name}"
+  role = aws_iam_role.server_access.name
 }
 
 resource "aws_iam_role_policy" "EC2RoleForSSM" {
   name = "EC2RoleForSSM"
-  role = "${aws_iam_role.server_access.id}"
+  role = aws_iam_role.server_access.id
 
   policy = <<EOF
 {
