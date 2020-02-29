@@ -18,5 +18,5 @@ kubectl create -f /home/centos/calico.yaml
 
 # Generate Cluster join command
 echo "[TASK 4] Generate and save cluster join command to /joincluster.sh"
-sudo su - root -c kubeadm token create --print-join-command > /joincluster.sh"
+sudo su - root -c "kubeadm token create --print-join-command > /joincluster.sh"
 sudo su - root -c "cat /joincluster.sh"
