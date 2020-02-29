@@ -6,7 +6,7 @@ resource "aws_instance" "K8S-Master" {
   vpc_security_group_ids = [aws_security_group.master-sg.id]
   key_name               = aws_key_pair.k8sKeyPair.key_name
   iam_instance_profile   = aws_iam_instance_profile.server_access_profile.name
-  user_data = "${file("requirements.sh")}"
+  user_data = file("requirements.sh")
   tags = {
     Name = "K8S-Master"
   }
@@ -53,7 +53,7 @@ resource "aws_instance" "K8S-Worker-1" {
   vpc_security_group_ids = [aws_security_group.worker-sg.id]
   key_name               = aws_key_pair.k8sKeyPair.key_name
   iam_instance_profile   = aws_iam_instance_profile.server_access_profile.name
-  user_data = "${file("requirements.sh")}"
+  user_data = file("requirements.sh")
   tags = {
     Name = "K8S-Worker-1"
   }
@@ -91,7 +91,7 @@ resource "aws_instance" "K8S-Worker-2" {
   vpc_security_group_ids = [aws_security_group.worker-sg.id]
   key_name               = aws_key_pair.k8sKeyPair.key_name
   iam_instance_profile   = aws_iam_instance_profile.server_access_profile.name
-  user_data = "${file("requirements.sh")}"
+  user_data = file("requirements.sh")
   tags = {
     Name = "K8S-Worker-2"
   }
