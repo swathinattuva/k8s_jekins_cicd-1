@@ -7,11 +7,11 @@ variable "K8S_AMI_ID" {
 }
 
 variable "SUBNETID" {
-  default = "subnet-0df3fe77211a23da5"
+  default = "subnet-08615195c3a5e1f73"
 }
 
 variable "VPCID" {
-  default = "vpc-0a8ed174002b0f078"
+  default = "vpc-079de7b712d9f9863"
 }
 
 variable "K8S_PRIV_KEY" {
